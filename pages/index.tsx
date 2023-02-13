@@ -1,8 +1,7 @@
 import Head from "next/head";
-import Image from "next/image";
-import { Inter } from "@next/font/google";
 import styles from "@/styles/Home.module.css";
 import products from "../products.json";
+import { initiateCheckout } from "../lib/payments";
 
 export default function Home() {
   return (
@@ -24,16 +23,22 @@ export default function Home() {
             const { id, image, title, description, price } = product;
             return (
               <li key={id} className={styles.card}>
-                <a
-                  href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img src={image} alt={title}></img>
-                  <h3>{title}</h3>
-                  <p>{price}€</p>
-                  <p>{description}</p>
-                </a>
+                <img src={image} alt={title}></img>
+                <h3>{title}</h3>
+                <p>{price}€</p>
+                <p>{description}</p>
+                <p>
+                  <button
+                    className={styles.button}
+                    onClick={() =>
+                      initiateCheckout({
+                        lineItems: [{ price: id, quantity: 1 }],
+                      })
+                    }
+                  >
+                    Buy
+                  </button>
+                </p>
               </li>
             );
           })}
