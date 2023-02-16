@@ -1,9 +1,10 @@
 import Head from "next/head";
 import styles from "@/styles/Home.module.css";
 import products from "../products.json";
-import { initiateCheckout } from "../lib/payments";
+import useCart from "./hooks/useCart";
 
 export default function Home() {
+  const { totalPrice, totalItems, addToCart, checkout } = useCart();
   return (
     <>
       <Head>
@@ -16,7 +17,26 @@ export default function Home() {
         <p className={styles.description}>
           The best space jellyfish swag on the web!
         </p>
-        <div className={styles.description}></div>
+
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <p className={styles.description}>
+            <strong>Items: </strong>
+            {totalItems}
+          </p>
+          <p className={styles.description}>
+            <strong>Total Cost: </strong>
+            {totalPrice}€
+          </p>
+          <br />
+          <br />
+          <button
+            className={styles.button}
+            onClick={() => checkout()}
+            disabled={!totalItems}
+          >
+            Check Out
+          </button>
+        </div>
 
         <ul className={styles.grid}>
           {products.map((product) => {
@@ -30,13 +50,9 @@ export default function Home() {
                 <p>
                   <button
                     className={styles.button}
-                    onClick={() =>
-                      initiateCheckout({
-                        lineItems: [{ price: id, quantity: 1 }],
-                      })
-                    }
+                    onClick={() => addToCart({ id })}
                   >
-                    Buy
+                    Add to Cart
                   </button>
                 </p>
               </li>
