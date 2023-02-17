@@ -20,11 +20,13 @@ const useCart = () => {
       return;
     }
     setCart((prev) => {
+      //@ts-ignore
       if (prev.products[id]) {
         return {
           ...prev,
           products: {
             ...prev.products,
+            //@ts-ignore
             [id]: { id, quantity: prev.products[id].quantity + 1 },
           },
         };
@@ -45,6 +47,7 @@ const useCart = () => {
       ({ id }) => `${id}` === `${key}`
     );
     return {
+      //@ts-ignore
       ...cart.products[key],
       pricePerItem: (product as Product).price,
     };
