@@ -1,7 +1,7 @@
 import Head from "next/head";
 import styles from "@/styles/Home.module.css";
 import products from "../products.json";
-import useCart from "./hooks/useCart";
+import useCart from "../hooks/useCart";
 
 export default function Home() {
   const { totalPrice, totalItems, addToCart, checkout } = useCart();

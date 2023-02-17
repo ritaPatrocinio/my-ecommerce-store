@@ -1,6 +1,6 @@
-import { initiateCheckout } from "../../lib/payments";
+import { initiateCheckout } from "../lib/payments";
 import { useState } from "react";
-import products from "../../products.json";
+import products from "../products.json";
 
 interface Product {
   id: string;
