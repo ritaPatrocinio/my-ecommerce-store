@@ -1,5 +1,5 @@
 import { initiateCheckout } from "../lib/payments";
-import { useState } from "react";
+import { useState, createContext, useContext, useEffect } from "react";
 import products from "../products.json";
 
 interface Product {
@@ -10,10 +10,27 @@ interface Product {
   price: number;
 }
 
-const defaultCart = { products: {} };
+const defaultCart = {
+  products: {},
+};
 
-const useCart = () => {
+export const useCartState = () => {
   const [cart, setCart] = useState(defaultCart);
+
+  useEffect(() => {
+    const storedState = window.localStorage.getItem("space-jellyfish-cart");
+    const data = storedState && JSON.parse(storedState);
+    if (data) {
+      setCart(data);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (cart !== defaultCart) {
+      const data = JSON.stringify(cart);
+      window.localStorage.setItem("space-jellyfish-cart", data);
+    }
+  }, [cart]);
 
   const addToCart = ({ id }: { id?: string } = {}) => {
     if (!id) {
@@ -36,6 +53,28 @@ const useCart = () => {
           products: {
             ...prev.products,
             [id]: { id, quantity: 1 },
+          },
+        };
+      }
+    });
+  };
+
+  const updateCart = ({
+    id,
+    quantity,
+  }: { id?: string; quantity?: number } = {}) => {
+    if (!id) {
+      return;
+    } //@ts-ignore
+    setCart((prev) => {
+      //@ts-ignore
+      if (prev.products[id]) {
+        return {
+          ...prev,
+          products: {
+            ...prev.products,
+            //@ts-ignore
+            [id]: { id, quantity: quantity },
           },
         };
       }
@@ -72,7 +111,12 @@ const useCart = () => {
     });
   };
 
-  return {totalPrice, totalItems, addToCart, checkout};
+  return { totalPrice, totalItems, addToCart, checkout, cartItems, updateCart };
 };
 
-export default useCart;
+export const CartContext = createContext({});
+
+export const useCart = () => {
+  const cart = useContext(CartContext);
+  return cart;
+};
