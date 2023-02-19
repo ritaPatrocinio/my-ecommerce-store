@@ -5,6 +5,7 @@ import { useCart } from "../hooks/useCart";
 import Link from "next/link";
 
 export default function Home() {
+  //@ts-ignore
   const { addToCart } = useCart();
   return (
     <>
