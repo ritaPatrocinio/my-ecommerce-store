@@ -23,15 +23,15 @@ export default function Home() {
                   <h3>{title}</h3>
                   <p>{price}€</p>
                   <p>{description}</p>
-                  <p>
-                    <button
-                      className={styles.button}
-                      onClick={() => addToCart({ id })}
-                    >
-                      Add to Cart
-                    </button>
-                  </p>
                 </Link>
+
+                <button
+                  style={{ zIndex: 10 }}
+                  className={styles.button}
+                  onClick={() => addToCart({ id })}
+                >
+                  Add to Cart
+                </button>
               </li>
             );
           })}

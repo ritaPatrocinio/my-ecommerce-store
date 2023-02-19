@@ -115,3 +115,7 @@ img {
 button {
   cursor: pointer;
 }
+
+p {
+  margin: 1em 0;
+}

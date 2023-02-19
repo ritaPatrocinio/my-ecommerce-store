@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 6rem;
+  padding: 3rem 6rem;
   min-height: 100vh;
   background: black;
   color: whitesmoke;
@@ -194,6 +194,12 @@
 
 /* Mobile */
 @media (max-width: 700px) {
+  .card {
+    flex-basis: calc(100% - 2rem);
+  }
+  .main {
+    padding: 0rem;
+  }
   .content {
     padding: 4rem;
   }
@@ -201,7 +207,7 @@
   .grid {
     grid-template-columns: 1fr;
     margin-bottom: 120px;
-    max-width: 320px;
+
     text-align: center;
   }
 

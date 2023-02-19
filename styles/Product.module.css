@@ -1,6 +1,6 @@
 .container {
   min-height: 100vh;
-  padding: 0 0.5rem;
+  padding: 0 32px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -13,7 +13,6 @@
   padding: 3rem 0;
   flex: 1;
   display: flex;
-  align-items: center;
 }
 
 .productImage {
@@ -21,7 +20,7 @@
 }
 
 .productImage img {
-  max-width: 400px;
+  max-width: 100%;
 }
 
 .footer {
@@ -53,9 +52,8 @@
   font-size: 1.2em;
   font-weight: 700;
   background-color: blueviolet;
-  padding: 0.8em 1.4em;
+  padding: 0.6em 1em;
   border-radius: 0.2em;
   border: 0;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
-  cursor: pointer;
 }

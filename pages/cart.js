@@ -42,14 +42,17 @@ export default function Cart() {
         updateCart({ id: item.id, quantity: quantity && parseInt(quantity) });
       };
       return (
-        <form onSubmit={handleOnSubmin}>
+        <form onSubmit={handleOnSubmin} style={{ display: "flex" }}>
           <input
+            className={styles.input}
             type="number"
             min={0}
             name="quantity"
             defaultValue={item.quantity}
           ></input>
-          <button type="submit">Update</button>
+          <button className={styles.updateButton} type="submit">
+            Update
+          </button>
         </form>
       );
     };

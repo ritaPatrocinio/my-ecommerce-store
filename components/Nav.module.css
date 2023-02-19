@@ -1,13 +1,10 @@
 .nav {
-  /* position: absolute;
-  right: 0;
-  top: 0; */
   color: whitesmoke;
   padding: 0.2rem 2em;
-  align-items: center;
   display: flex;
   background: black;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .nav p {
@@ -24,7 +21,11 @@
 .nav button p {
   margin: 0.5rem;
 }
-
+@media (max-width: 500px) {
+  .navTitle {
+    font-size: 1.5em !important;
+  }
+}
 .navTitle {
   font-size: 2rem;
   font-weight: 700;
